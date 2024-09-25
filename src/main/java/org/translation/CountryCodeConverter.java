@@ -38,6 +38,8 @@ public class CountryCodeConverter {
                 List<String> separate = List.of(line.split("\t"));
                 countries.put(separate.get(0), separate.get(2));
                 codes.put(separate.get(2), separate.get(0));
+                countries.remove("Country");
+                codes.remove("Alpha-3 code");
             }
         }
         catch (IOException | URISyntaxException ex) {
