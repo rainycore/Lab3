@@ -81,8 +81,7 @@ public class JSONTranslator implements Translator {
     @Override
     public String translate(String country, String language) {
         if (countries.containsKey(country)) {
-            int i;
-            for (i = 0; i < file.length(); i++) {
+            for (int i = 0; i < file.length(); i++) {
                 if (file.getJSONObject(i).getString("alpha3").equals(country)) {
                     if (file.getJSONObject(i).keySet().contains(language)) {
                         return file.getJSONObject(i).getString(language);
