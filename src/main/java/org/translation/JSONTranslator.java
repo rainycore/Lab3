@@ -56,8 +56,8 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        if (countries.containsKey(country)){
-            Set<String> lang = countries.get(country).keySet();
+        if (countries.containsKey(country.toUpperCase())) {
+            Set<String> lang = countries.get(country.toUpperCase()).keySet();
             lang.remove("id");
             lang.remove("alpha2");
             lang.remove("alpha3");
@@ -80,11 +80,11 @@ public class JSONTranslator implements Translator {
 
     @Override
     public String translate(String country, String language) {
-        if (countries.containsKey(country)) {
+        if (countries.containsKey(country.toUpperCase())) {
             for (int i = 0; i < file.length(); i++) {
-                if (file.getJSONObject(i).getString("alpha3").equals(country)) {
-                    if (file.getJSONObject(i).keySet().contains(language)) {
-                        return file.getJSONObject(i).getString(language);
+                if (file.getJSONObject(i).getString("alpha3").equals(country.toLowerCase())) {
+                    if (file.getJSONObject(i).keySet().contains(language.toLowerCase())) {
+                        return file.getJSONObject(i).getString(language.toLowerCase());
                     }
                 }
             }

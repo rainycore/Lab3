@@ -12,7 +12,6 @@ import java.util.Map;
  * This class provides the service of converting language codes to their names.
  */
 public class LanguageCodeConverter {
-
     private Map<String, String> lang = new HashMap<>();
     private Map<String, String> langcode = new HashMap<>();
     /**
@@ -39,6 +38,8 @@ public class LanguageCodeConverter {
                 List<String> separate = List.of(line.split("\t"));
                 lang.put(separate.get(0), separate.get(1));
                 langcode.put(separate.get(1), separate.get(0));
+                lang.remove("ISO Language Names");
+                langcode.remove("Code");
             }
 
         }
@@ -54,7 +55,7 @@ public class LanguageCodeConverter {
      * @return the name of the language corresponding to the code
      */
     public String fromLanguageCode(String code) {
-        return langcode.get(code);
+        return langcode.get(code.toLowerCase());
     }
 
     /**
